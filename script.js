@@ -1,4 +1,3 @@
-// Функция для создания баннера продукта
 function createBanner(product) {
     const banner = document.createElement('div');
 
@@ -11,6 +10,7 @@ function createBanner(product) {
             <div class="main-content__banner-amount-number">
                  <span>$${product.amount}</span>${periodText}
             </div>
+            ${product.price_key === '50%' ? '<div class="discount-number">$9.99</div>' : ''}
         </div>
         <div class="main-content__banner-content">
             <div class="main-content__banner-content-name-prod">${product.name_prod}</div>
@@ -25,7 +25,6 @@ function createBanner(product) {
     return banner;
 }
 
-// AJAX-запрос для получения данных
 function fetchProducts() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://veryfast.io/t/front_test_api.php', true);
@@ -34,12 +33,12 @@ function fetchProducts() {
         if (xhr.status === 200) {
             handleResponse(JSON.parse(xhr.responseText));
         } else {
-            console.error('Ошибка загрузки данных:', xhr.statusText);
+            console.error('Error download data', xhr.statusText);
         }
     };
 
     xhr.onerror = function() {
-        console.error('Произошла ошибка запроса');
+        console.error('Error downloading data', xhr.statusText);
     };
 
     xhr.send();
@@ -58,11 +57,10 @@ function handleResponse(data) {
 
         addDownloadListeners();
     } else {
-        console.error('Ошибка в ответе сервера');
+        console.error('Error in response');
     }
 }
 
-// Функция добавления обработчиков событий на кнопки скачивания
 function addDownloadListeners() {
     document.querySelectorAll('.main-content__banner-button').forEach(button => {
         button.addEventListener('click', function(event) {
@@ -74,7 +72,6 @@ function addDownloadListeners() {
     });
 }
 
-// Функция для скачивания файла
 function downloadFile(link) {
     const a = document.createElement('a');
     a.href = link;
@@ -84,7 +81,6 @@ function downloadFile(link) {
     document.body.removeChild(a);
 }
 
-// Функция для показа анимации стрелки
 function showArrow() {
     const arrow = document.getElementById('arrow');
     arrow.style.display = 'flex';

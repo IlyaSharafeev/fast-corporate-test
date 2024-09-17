@@ -135,16 +135,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .main-content__banner-amount-number {
     font-family: Bebas Neue;
-    line-height: 48px;
     font-size: 18px;
 }
 
 .main-content__banner-amount-number > span {
-    line-height: 48px;
     font-size: 48px;
 }
 
@@ -293,4 +292,11 @@ body {
     position: absolute;
     top: -15px;
     left: -15px;
+}
+
+.discount-number {
+    text-decoration: line-through;
+    color: #929292;
+    position: absolute;
+    bottom: 10px;
 }
